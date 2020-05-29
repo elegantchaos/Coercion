@@ -3,12 +3,8 @@
 //  All code (c) 2020 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-public protocol IntCoercion {
-    var asInt: Int? { get }
-}
+import Foundation
 
-extension Optional where Wrapped: IntCoercion {
-    var asInt: Int? {
-        return self?.asInt
-    }
+extension Double: IntConvertable {
+    public var asInt: Int? { Int(self) }
 }

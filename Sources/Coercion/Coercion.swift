@@ -18,26 +18,13 @@ public class Coercion {
         return String(describing: value)
     }
 
+    class func asInt<T>(_ value: T?) -> Int? where T: IntConvertable {
+        return value?.asInt
+    }
+    
     class func asInt(_ value: Any?) -> Int? {
         guard let value = value else { return nil }
-
-        if let int = value as? Int {
-            return int
-        }
-
-        if let double = value as? Double {
-            return Int(double)
-        }
-        
-        if let bool = value as? Bool {
-            return bool ? 1 : 0
-        }
-        
-        if let string = value as? String {
-            return Int(string)
-        }
-        
-        return nil
+        return (value as? IntConvertable)?.asInt
     }
 
     class func asDouble(_ value: Any?) -> Double? {

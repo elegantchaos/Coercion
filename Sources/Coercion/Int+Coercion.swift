@@ -5,8 +5,7 @@
 
 import Foundation
 
-extension StringProtocol {
-    public var asInt: Int? { return Int(self) }
+extension Int: IntConvertable {
+    public var asInt: Int? { self }
 }
 
-extension String: IntConvertable { }
