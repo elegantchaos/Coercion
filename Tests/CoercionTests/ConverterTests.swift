@@ -8,7 +8,7 @@ import XCTest
 @testable import Coercion
 
 final class ConverterTests: XCTestCase {
-    let converter = Converter.shared
+    let converter = StandardConverter.shared
     
     let example: [String:Any] = [
         "string": "123",

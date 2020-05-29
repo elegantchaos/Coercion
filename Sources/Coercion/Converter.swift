@@ -7,16 +7,29 @@ import Foundation
 
 // TODO: move to standalone package
 
-public struct Converter {
-    public static let shared = Converter()
 
+public protocol Converter {
+    func asString<T>(_ value: T?) -> String? where T: StringConvertible
+    func asString(_ value: Any?) -> String?
+    func asInt<T>(_ value: T?) -> Int? where T: IntConvertible
+    func asInt(_ value: Any?) -> Int?
+    func asUInt<T>(_ value: T?) -> UInt? where T: UIntConvertible
+    func asUInt(_ value: Any?) -> UInt?
+    func asDouble<T>(_ value: T?) -> Double? where T: DoubleConvertible
+    func asDouble(_ value: Any?) -> Double?
+    func asDate(_ value: Any?) -> Date?
+}
+
+public struct StandardConverter: Converter {
+    public static let shared = StandardConverter()
+    
     let dateFormatter = ISO8601DateFormatter()
     
-    func asString<T>(_ value: T?) -> String? where T: StringConvertible {
+    public func asString<T>(_ value: T?) -> String? where T: StringConvertible {
         return value?.asString
     }
     
-    func asString(_ value: Any?) -> String? {
+    public func asString(_ value: Any?) -> String? {
         if let value = value as? StringConvertible {
             return value.asString
         } else if let value = value {
@@ -26,34 +39,34 @@ public struct Converter {
         }
     }
 
-    func asInt<T>(_ value: T?) -> Int? where T: IntConvertible {
+    public func asInt<T>(_ value: T?) -> Int? where T: IntConvertible {
         return value?.asInt
     }
     
-    func asInt(_ value: Any?) -> Int? {
+    public func asInt(_ value: Any?) -> Int? {
         guard let value = value as? IntConvertible else { return nil }
         return value.asInt
     }
 
-    func asUInt<T>(_ value: T?) -> UInt? where T: UIntConvertible {
+    public func asUInt<T>(_ value: T?) -> UInt? where T: UIntConvertible {
         return value?.asUInt
     }
     
-    func asUInt(_ value: Any?) -> UInt? {
+    public func asUInt(_ value: Any?) -> UInt? {
         guard let value = value as? UIntConvertible else { return nil }
         return value.asUInt
     }
 
-    func asDouble<T>(_ value: T?) -> Double? where T: DoubleConvertible {
+    public func asDouble<T>(_ value: T?) -> Double? where T: DoubleConvertible {
         return value?.asDouble
     }
     
-    func asDouble(_ value: Any?) -> Double? {
+    public func asDouble(_ value: Any?) -> Double? {
         guard let value = value as? DoubleConvertible else { return nil }
         return value.asDouble
     }
 
-    func asDate(_ value: Any?) -> Date? {
+    public func asDate(_ value: Any?) -> Date? {
         guard let value = value else { return nil }
 
         if let date = value as? Date {

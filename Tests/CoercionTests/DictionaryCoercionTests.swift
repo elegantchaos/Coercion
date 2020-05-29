@@ -6,6 +6,14 @@
 import XCTest
 @testable import Coercion
 
+typealias CustomDict = Dictionary<String, Int>
+
+
+func subscriptConverter<CustomDict>(for type: CustomDict) -> Converter {
+    return FakeConverter()
+}
+
+
 final class DictionaryCoercionTests: XCTestCase {
     let example: [String:Any] = [
         "string": "123",
@@ -38,4 +46,11 @@ final class DictionaryCoercionTests: XCTestCase {
         XCTAssertNil(example[doubleWithKey: "missing"])
     }
 
+    
+    func testOverridingConverter() {
+        let converter = FakeConverter()
+        let example: CustomDict = [ "foo": 1, "bar": 2]
+        XCTAssertEqual(example[intWithKey: "foo", converter], 999)
+        XCTAssertEqual(example[intWithKey: "bar", converter], 999)
+    }
 }
