@@ -5,8 +5,6 @@
 
 import Foundation
 
-protocol StandardConversions: IntConvertible, UIntConvertible, DoubleConvertible, BoolConvertible, StringConvertible {
-}
 
 extension BinaryInteger {
     public var asInt: Int? { Int(self) }
@@ -14,19 +12,20 @@ extension BinaryInteger {
     public var asDouble: Double? { Double(self) }
     public var asBool: Bool? { self == 0 ? false : true }
     public var asString: String? { self.description }
+    public var asDate: Date? { Date(timeIntervalSinceReferenceDate: Double(self)) }
 }
 
-extension Int: StandardConversions { }
-extension Int8: StandardConversions { }
-extension Int16: StandardConversions { }
-extension Int32: StandardConversions { }
-extension Int64: StandardConversions { }
+extension Int: StandardConvertible { }
+extension Int8: StandardConvertible { }
+extension Int16: StandardConvertible { }
+extension Int32: StandardConvertible { }
+extension Int64: StandardConvertible { }
 
-extension UInt: StandardConversions { }
-extension UInt8: StandardConversions { }
-extension UInt16: StandardConversions { }
-extension UInt32: StandardConversions { }
-extension UInt64: StandardConversions { }
+extension UInt: StandardConvertible { }
+extension UInt8: StandardConvertible { }
+extension UInt16: StandardConvertible { }
+extension UInt32: StandardConvertible { }
+extension UInt64: StandardConvertible { }
 
 //
 //extension Int: DoubleConvertible {

@@ -46,11 +46,11 @@ final class DictionaryCoercionTests: XCTestCase {
         XCTAssertNil(example[doubleWithKey: "missing"])
     }
 
-    
     func testOverridingConverter() {
         let converter = FakeConverter()
         let example: CustomDict = [ "foo": 1, "bar": 2]
         XCTAssertEqual(example[intWithKey: "foo", converter], 999)
         XCTAssertEqual(example[intWithKey: "bar", converter], 999)
     }
+    
 }

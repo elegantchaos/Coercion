@@ -10,12 +10,9 @@ extension StringProtocol {
     public var asUInt: UInt? { return UInt(self) }
     public var asDouble: Double? { Double(self) }
     public var asString: String? { String(self) }
+    public var asDate: Date? { StandardConverter.shared.asDate(self) }
 }
 
-extension String: IntConvertible { }
-extension String: UIntConvertible { }
-extension String: DoubleConvertible { }
-extension String: StringConvertible { }
-extension String: BoolConvertible {
+extension String: StandardConvertible {
     public var asBool: Bool? { (self as NSString).boolValue }
 }

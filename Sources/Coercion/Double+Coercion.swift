@@ -22,3 +22,7 @@ extension Double: BoolConvertible {
 }
 
 extension Double: StringConvertible { }
+
+extension Double: DateConvertible {
+    public var asDate: Date? { Date(timeIntervalSinceReferenceDate: self) }
+}
