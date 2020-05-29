@@ -16,13 +16,14 @@ public struct Converter {
         return value?.asString
     }
     
-    func asString<T>(_ value: T?) -> String? where T: CustomStringConvertible {
-        return value?.description
-    }
-    
     func asString(_ value: Any?) -> String? {
-        if let value = value as? StringConvertible { return value.asString }
-        return String(describing: value)
+        if let value = value as? StringConvertible {
+            return value.asString
+        } else if let value = value {
+            return String(describing: value)
+        } else {
+            return nil
+        }
     }
 
     func asInt<T>(_ value: T?) -> Int? where T: IntConvertible {
@@ -32,6 +33,15 @@ public struct Converter {
     func asInt(_ value: Any?) -> Int? {
         guard let value = value as? IntConvertible else { return nil }
         return value.asInt
+    }
+
+    func asUInt<T>(_ value: T?) -> UInt? where T: UIntConvertible {
+        return value?.asUInt
+    }
+    
+    func asUInt(_ value: Any?) -> UInt? {
+        guard let value = value as? UIntConvertible else { return nil }
+        return value.asUInt
     }
 
     func asDouble<T>(_ value: T?) -> Double? where T: DoubleConvertible {

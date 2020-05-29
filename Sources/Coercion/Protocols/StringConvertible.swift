@@ -13,6 +13,12 @@ extension Optional where Wrapped: StringConvertible {
     }
 }
 
+extension Optional where Wrapped: CustomStringConvertible {
+    public var asString: String? {
+        return self == nil ? nil : self?.description
+    }
+}
+
 extension CustomStringConvertible {
     public var asString: String? {
         return self.description
