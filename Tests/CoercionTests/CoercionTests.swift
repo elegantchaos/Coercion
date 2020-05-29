@@ -7,11 +7,26 @@ final class CoercionTests: XCTestCase {
         XCTAssertEqual("-456".asInt, -456)
         XCTAssertEqual(true.asInt, 1)
         XCTAssertEqual(false.asInt, 0)
+        XCTAssertEqual(123.asInt, 123)
+        XCTAssertEqual((-123).asInt, -123)
         XCTAssertEqual(123.456.asInt, 123)
 
         XCTAssertNil("not a number".asInt)
         XCTAssertNil(" 123 ".asInt)
         XCTAssertNil("(123) ".asInt)
+    }
+
+    func testUIntCoercion() {
+        XCTAssertEqual("123".asUInt, 123)
+        XCTAssertEqual(true.asUInt, 1)
+        XCTAssertEqual(false.asUInt, 0)
+        XCTAssertEqual(123.asUInt, 123)
+        XCTAssertEqual(123.456.asUInt, 123)
+
+        XCTAssertNil("not a number".asUInt)
+        XCTAssertNil(" 123 ".asUInt)
+        XCTAssertNil("(123) ".asUInt)
+        XCTAssertNil("-456".asUInt)
     }
     
     func testDoubleCoercion() {
@@ -47,5 +62,8 @@ final class CoercionTests: XCTestCase {
     func testStringCoercion() {
         XCTAssertEqual("test".asString, "test")
         XCTAssertEqual(123.asString, "123")
+        XCTAssertEqual(123.456.asString, "123.456")
+        XCTAssertEqual(true.asString, "true")
+        XCTAssertEqual(false.asString, "false")
     }
 }

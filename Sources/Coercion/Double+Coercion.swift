@@ -9,6 +9,10 @@ extension Double: IntConvertible {
     public var asInt: Int? { Int(self) }
 }
 
+extension Double: UIntConvertible {
+    public var asUInt: UInt? { UInt(self) }
+}
+
 extension Double: DoubleConvertible {
     public var asDouble: Double? { self }
 }
@@ -16,3 +20,5 @@ extension Double: DoubleConvertible {
 extension Double: BoolConvertible {
     public var asBool: Bool? { self == 0.0 ? false : true }
 }
+
+extension Double: StringConvertible { }
