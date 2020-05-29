@@ -13,6 +13,7 @@ extension StringProtocol {
 
 extension String: IntConvertible { }
 extension String: DoubleConvertible { }
+extension String: StringConvertible { }
 
 extension String: BoolConvertible {
     public var asBool: Bool? { (self as NSString).boolValue }

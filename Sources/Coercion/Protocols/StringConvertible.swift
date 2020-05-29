@@ -8,7 +8,13 @@ public protocol StringConvertible {
 }
 
 extension Optional where Wrapped: StringConvertible {
-    var asString: String? {
+    public var asString: String? {
         return self?.asString
+    }
+}
+
+extension CustomStringConvertible {
+    public var asString: String? {
+        return self.description
     }
 }
