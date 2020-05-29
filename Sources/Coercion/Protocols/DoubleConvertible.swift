@@ -3,12 +3,12 @@
 //  All code (c) 2020 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-public protocol IntConvertable {
-    var asInt: Int? { get }
+public protocol DoubleConvertible {
+    var asDouble: Double? { get }
 }
 
-extension Optional where Wrapped: IntConvertable {
-    var asInt: Int? {
-        return self?.asInt
+extension Optional where Wrapped: DoubleConvertible {
+    var asDouble: Double? {
+        return self?.asDouble
     }
 }

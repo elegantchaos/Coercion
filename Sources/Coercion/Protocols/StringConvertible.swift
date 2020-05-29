@@ -3,12 +3,12 @@
 //  All code (c) 2020 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-import Foundation
-
-extension Int: IntConvertible {
-    public var asInt: Int? { self }
+public protocol StringConvertible {
+    var asString: String? { get }
 }
 
-extension Int: DoubleConvertible {
-    public var asDouble: Double? { Double(self) }
+extension Optional where Wrapped: StringConvertible {
+    var asString: String? {
+        return self?.asString
+    }
 }

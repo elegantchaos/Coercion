@@ -5,10 +5,12 @@
 
 import Foundation
 
-extension Int: IntConvertible {
-    public var asInt: Int? { self }
+public protocol DateConvertible {
+    var asDate: Date? { get }
 }
 
-extension Int: DoubleConvertible {
-    public var asDouble: Double? { Double(self) }
+extension Optional where Wrapped: DateConvertible {
+    var asDate: Date? {
+        return self?.asDate
+    }
 }

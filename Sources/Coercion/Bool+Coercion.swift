@@ -5,6 +5,10 @@
 
 import Foundation
 
-extension Bool: IntConvertable {
+extension Bool: IntConvertible {
     public var asInt: Int? { return self ? 1 : 0 }
+}
+
+extension Bool: DoubleConvertible {
+    public var asDouble: Double? { return self ? 1.0 : 0.0 }
 }

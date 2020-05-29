@@ -5,6 +5,10 @@
 
 import Foundation
 
-extension Double: IntConvertable {
+extension Double: IntConvertible {
     public var asInt: Int? { Int(self) }
+}
+
+extension Double: DoubleConvertible {
+    public var asDouble: Double? { self }
 }

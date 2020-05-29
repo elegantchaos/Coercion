@@ -7,6 +7,8 @@ import Foundation
 
 extension StringProtocol {
     public var asInt: Int? { return Int(self) }
+    public var asDouble: Double? { Double(self) }
 }
 
-extension String: IntConvertable { }
+extension String: IntConvertible { }
+extension String: DoubleConvertible { }
