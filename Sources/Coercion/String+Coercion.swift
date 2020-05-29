@@ -8,7 +8,12 @@ import Foundation
 extension StringProtocol {
     public var asInt: Int? { return Int(self) }
     public var asDouble: Double? { Double(self) }
+    public var asString: String? { String(self) }
 }
 
 extension String: IntConvertible { }
 extension String: DoubleConvertible { }
+
+extension String: BoolConvertible {
+    public var asBool: Bool? { (self as NSString).boolValue }
+}

@@ -12,3 +12,12 @@ extension Bool: IntConvertible {
 extension Bool: DoubleConvertible {
     public var asDouble: Double? { return self ? 1.0 : 0.0 }
 }
+
+extension Bool: StringConvertible {
+    public var asString: String? { return self ? "true" : "false" }
+}
+
+extension Bool: BoolConvertible {
+    public var asBool: Bool? { return self }
+}
+

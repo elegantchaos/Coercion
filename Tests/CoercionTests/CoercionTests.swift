@@ -26,4 +26,18 @@ final class CoercionTests: XCTestCase {
         XCTAssertNil("(123) ".asDouble)
     }
 
+    func testBoolCoercion() {
+        XCTAssertEqual("123.456".asBool, true)
+        XCTAssertEqual("0".asBool, false)
+        XCTAssertEqual("tRue".asBool, true)
+        XCTAssertEqual("falSe".asBool, false)
+        XCTAssertEqual("YeS".asBool, true)
+        XCTAssertEqual("nO".asBool, false)
+        XCTAssertEqual("".asBool, false)
+        XCTAssertEqual("nil".asBool, false)
+        XCTAssertEqual(true.asBool, true)
+        XCTAssertEqual(false.asBool, false)
+        XCTAssertEqual(123.456.asBool, true)
+    }
+
 }

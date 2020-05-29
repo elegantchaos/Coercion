@@ -5,14 +5,13 @@
 
 import Foundation
 
-extension Double: IntConvertible {
-    public var asInt: Int? { Int(self) }
+public protocol BoolConvertible {
+    var asBool: Bool? { get }
 }
 
-extension Double: DoubleConvertible {
-    public var asDouble: Double? { self }
+extension Optional where Wrapped: BoolConvertible {
+    var asBool: Bool? {
+        return self?.asBool
+    }
 }
 
-extension Double: BoolConvertible {
-    public var asBool: Bool? { self == 0.0 ? false : true }
-}
