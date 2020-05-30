@@ -72,13 +72,12 @@ final class CoercionTests: XCTestCase {
         let longFormatter = DateFormatter()
         longFormatter.dateStyle = .full
         longFormatter.timeStyle = .full
+        longFormatter.locale = Locale(identifier: "en_US")
         let date = standardFormatter.date(from: "1969-11-12T17:55:25Z")
-        print(longFormatter.string(from: date!))
         XCTAssertEqual(date.asDate, date)
         XCTAssertEqual(Double(-982562675).asDate, date)
         XCTAssertEqual(Int(-982562675).asDate, date)
         XCTAssertEqual("1969-11-12T17:55:25Z".asDate, date)
-        XCTAssertEqual("Wednesday, 12 November 1969 at 18:55:25 GMT+01:00".asDate(using: longFormatter), date)
-        
+        XCTAssertEqual("Wednesday, November 12, 1969 at 6:55:25 PM GMT+01:00".asDate(using: longFormatter), date)
     }
 }
