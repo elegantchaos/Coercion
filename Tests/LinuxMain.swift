@@ -3,5 +3,6 @@ import XCTest
 import CoercionTests
 
 var tests = [XCTestCaseEntry]()
-tests += CoercionTests.allTests()
+tests += CoercionTests.__allTests()
+
 XCTMain(tests)
