@@ -17,4 +17,11 @@
 
 # Coercion
 
-A description of this package.
+Support for coercing basic data types.
+
+Provides:
+
+- coercion protocols which define `asInt`, `asString` and so on
+- implementations of these protocols for foundation data types
+- a `Converter` protocol which can take an `Any` object and turn it into a known type using the coercion protocols
+- subscript operators for Dictionary which look up a key by type: `intWithKey:`, `stringWithKey:` etc
