@@ -68,11 +68,17 @@ final class CoercionTests: XCTestCase {
     }
     
     func testDateCoercion() {
-        let formatter = ISO8601DateFormatter()
-        let date = formatter.date(from: "1969-11-12T17:55:25Z")
+        let standardFormatter = StandardConverter.shared.dateFormatter
+        let longFormatter = DateFormatter()
+        longFormatter.dateStyle = .full
+        longFormatter.timeStyle = .full
+        let date = standardFormatter.date(from: "1969-11-12T17:55:25Z")
+        print(longFormatter.string(from: date!))
         XCTAssertEqual(date.asDate, date)
         XCTAssertEqual(Double(-982562675).asDate, date)
         XCTAssertEqual(Int(-982562675).asDate, date)
         XCTAssertEqual("1969-11-12T17:55:25Z".asDate, date)
+        XCTAssertEqual("Wednesday, 12 November 1969 at 18:55:25 GMT+01:00".asDate(using: longFormatter), date)
+        
     }
 }

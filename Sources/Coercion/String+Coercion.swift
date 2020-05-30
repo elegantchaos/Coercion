@@ -10,9 +10,15 @@ extension StringProtocol {
     public var asUInt: UInt? { return UInt(self) }
     public var asDouble: Double? { Double(self) }
     public var asString: String? { String(self) }
-    public var asDate: Date? { StandardConverter.shared.asDate(self) }
+    public func asDate(using formatter: DateFormatter) -> Date? { formatter.date(from: String(self)) }
 }
 
 extension String: StandardConvertible {
     public var asBool: Bool? { (self as NSString).boolValue }
+}
+
+extension String: DateStringConvertible { }
+
+extension String: DataConvertible {
+    public var asData: Data? { return data(using: .utf8) }
 }

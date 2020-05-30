@@ -20,10 +20,13 @@ public protocol Converter {
     func asDate(_ value: Any?) -> Date?
 }
 
+public protocol DateFormatter {
+    func date(from string: String) -> Date?
+}
+
 public struct StandardConverter: Converter {
     public static let shared = StandardConverter()
-    
-    let dateFormatter = ISO8601DateFormatter()
+    var dateFormatter = ISO8601DateFormatter()
     
     public func asString<T>(_ value: T?) -> String? where T: StringConvertible {
         return value?.asString
@@ -67,25 +70,13 @@ public struct StandardConverter: Converter {
     }
 
     public func asDate(_ value: Any?) -> Date? {
-        guard let value = value else { return nil }
-
-        if let date = value as? Date {
-            return date
+        if let value = value as? DateStringConvertible {
+            return value.asDate(using: dateFormatter)
+        } else if let value = value as? DateConvertible {
+            return value.asDate
+        } else {
+            return nil
         }
-        
-        if let double = value as? Double {
-            return Date(timeIntervalSinceReferenceDate: double)
-        }
-
-        if let int = value as? Int {
-            return Date(timeIntervalSinceReferenceDate: TimeInterval(int))
-        }
-
-        if let string = value as? String {
-            return dateFormatter.date(from: string)
-        }
-        
-        return nil
     }
 }
 
