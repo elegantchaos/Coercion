@@ -13,6 +13,14 @@ extension StringProtocol {
     public func asDate(using formatter: DateFormatter) -> Date? { formatter.date(from: String(self)) }
 }
 
+extension NSString: StandardConvertible {
+    public var asInt: Int? { integerValue }
+    public var asDouble: Double? { doubleValue }
+    public var asUInt: UInt? { UInt(integerValue) }
+    public var asBool: Bool? { boolValue }
+    public func asDate(using formatter: DateFormatter) -> Date? { formatter.date(from: self as String) }
+}
+
 extension String: StandardConvertible {
     public var asBool: Bool? { (self as NSString).boolValue }
 }

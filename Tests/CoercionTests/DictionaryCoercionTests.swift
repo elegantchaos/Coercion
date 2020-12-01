@@ -17,6 +17,7 @@ func subscriptConverter<CustomDict>(for type: CustomDict) -> Converter {
 final class DictionaryCoercionTests: XCTestCase {
     let example: [String:Any] = [
         "string": "123",
+        "nsstring": "123" as NSString,
         "int": 123,
         "double": 123.456,
         "bool": true
@@ -24,6 +25,7 @@ final class DictionaryCoercionTests: XCTestCase {
 
     func testString() {
         XCTAssertEqual(example[stringWithKey: "string"], "123")
+        XCTAssertEqual(example[stringWithKey: "nsstring"], "123")
         XCTAssertEqual(example[stringWithKey: "int"], "123")
         XCTAssertEqual(example[stringWithKey: "double"], "123.456")
         XCTAssertEqual(example[stringWithKey: "bool"], "true")
@@ -32,6 +34,7 @@ final class DictionaryCoercionTests: XCTestCase {
     
     func testInt() {
         XCTAssertEqual(example[intWithKey: "string"], 123)
+        XCTAssertEqual(example[intWithKey: "nsstring"], 123)
         XCTAssertEqual(example[intWithKey: "int"], 123)
         XCTAssertEqual(example[intWithKey: "double"], 123)
         XCTAssertEqual(example[intWithKey: "bool"], 1)
@@ -40,6 +43,7 @@ final class DictionaryCoercionTests: XCTestCase {
 
     func testDouble() {
         XCTAssertEqual(example[doubleWithKey: "string"], 123)
+        XCTAssertEqual(example[doubleWithKey: "nsstring"], 123)
         XCTAssertEqual(example[doubleWithKey: "int"], 123)
         XCTAssertEqual(example[doubleWithKey: "double"], 123.456)
         XCTAssertEqual(example[doubleWithKey: "bool"], 1)
