@@ -26,3 +26,11 @@ extension Double: StringConvertible { }
 extension Double: DateConvertible {
     public var asDate: Date? { Date(timeIntervalSinceReferenceDate: self) }
 }
+
+extension NSNumber: DoubleConvertible {
+    public var asDouble: Double? { doubleValue }
+}
+
+extension CFBoolean: DoubleConvertible {
+    public var asDouble: Double? { self == kCFBooleanTrue ? 1.0 : 0.0 }
+}

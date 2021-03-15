@@ -6,19 +6,19 @@
 import Foundation
 
 public extension Dictionary {
-    subscript(stringWithKey key: Key, converter: Converter = StandardConverter.shared) -> String? {
+    subscript(asString key: Key, converter: Converter = StandardConverter.shared) -> String? {
         return converter.asString(self[key])
     }
 
-    subscript(intWithKey key: Key, converter: Converter = StandardConverter.shared) -> Int? {
+    subscript(asInt key: Key, converter: Converter = StandardConverter.shared) -> Int? {
         return converter.asInt(self[key])
     }
 
-    subscript(doubleWithKey key: Key, converter: Converter = StandardConverter.shared) -> Double? {
+    subscript(asDouble key: Key, converter: Converter = StandardConverter.shared) -> Double? {
         return converter.asDouble(self[key])
     }
     
-    subscript(dateWithKey key: Key, converter: Converter = StandardConverter.shared) -> Date? {
+    subscript(asDate key: Key, converter: Converter = StandardConverter.shared) -> Date? {
         return converter.asDate(self[key])
     }
 

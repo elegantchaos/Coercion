@@ -20,41 +20,47 @@ final class DictionaryCoercionTests: XCTestCase {
         "nsstring": "123" as NSString,
         "int": 123,
         "double": 123.456,
-        "bool": true
+        "bool": true,
+        "nsint": NSNumber(123),
+        "nsdouble": NSNumber(123.456),
+        "nsbool": kCFBooleanTrue!
     ]
 
     func testString() {
-        XCTAssertEqual(example[stringWithKey: "string"], "123")
-        XCTAssertEqual(example[stringWithKey: "nsstring"], "123")
-        XCTAssertEqual(example[stringWithKey: "int"], "123")
-        XCTAssertEqual(example[stringWithKey: "double"], "123.456")
-        XCTAssertEqual(example[stringWithKey: "bool"], "true")
-        XCTAssertNil(example[stringWithKey: "missing"])
+        XCTAssertEqual(example[asString: "string"], "123")
+        XCTAssertEqual(example[asString: "nsstring"], "123")
+        XCTAssertEqual(example[asString: "int"], "123")
+        XCTAssertEqual(example[asString: "nsint"], "123")
+        XCTAssertEqual(example[asString: "double"], "123.456")
+        XCTAssertEqual(example[asString: "nsdouble"], "123.456")
+        XCTAssertEqual(example[asString: "bool"], "true")
+        XCTAssertEqual(example[asString: "nsbool"], "true")
+        XCTAssertNil(example[asString: "missing"])
     }
     
     func testInt() {
-        XCTAssertEqual(example[intWithKey: "string"], 123)
-        XCTAssertEqual(example[intWithKey: "nsstring"], 123)
-        XCTAssertEqual(example[intWithKey: "int"], 123)
-        XCTAssertEqual(example[intWithKey: "double"], 123)
-        XCTAssertEqual(example[intWithKey: "bool"], 1)
-        XCTAssertNil(example[intWithKey: "missing"])
+        XCTAssertEqual(example[asInt: "string"], 123)
+        XCTAssertEqual(example[asInt: "nsstring"], 123)
+        XCTAssertEqual(example[asInt: "int"], 123)
+        XCTAssertEqual(example[asInt: "double"], 123)
+        XCTAssertEqual(example[asInt: "bool"], 1)
+        XCTAssertNil(example[asInt: "missing"])
     }
 
     func testDouble() {
-        XCTAssertEqual(example[doubleWithKey: "string"], 123)
-        XCTAssertEqual(example[doubleWithKey: "nsstring"], 123)
-        XCTAssertEqual(example[doubleWithKey: "int"], 123)
-        XCTAssertEqual(example[doubleWithKey: "double"], 123.456)
-        XCTAssertEqual(example[doubleWithKey: "bool"], 1)
-        XCTAssertNil(example[doubleWithKey: "missing"])
+        XCTAssertEqual(example[asDouble: "string"], 123)
+        XCTAssertEqual(example[asDouble: "nsstring"], 123)
+        XCTAssertEqual(example[asDouble: "int"], 123)
+        XCTAssertEqual(example[asDouble: "double"], 123.456)
+        XCTAssertEqual(example[asDouble: "bool"], 1)
+        XCTAssertNil(example[asDouble: "missing"])
     }
 
     func testOverridingConverter() {
         let converter = FakeConverter()
         let example: CustomDict = [ "foo": 1, "bar": 2]
-        XCTAssertEqual(example[intWithKey: "foo", converter], 999)
-        XCTAssertEqual(example[intWithKey: "bar", converter], 999)
+        XCTAssertEqual(example[asInt: "foo", converter], 999)
+        XCTAssertEqual(example[asInt: "bar", converter], 999)
     }
     
 }

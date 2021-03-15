@@ -30,3 +30,18 @@ extension String: DateStringConvertible { }
 extension String: DataConvertible {
     public var asData: Data? { return data(using: .utf8) }
 }
+
+extension NSNumber: StringConvertible {
+    public var asString: String? {
+        if self.objCType[0] == 99 /* "c" */ {
+            return boolValue ? "true" : "false"
+        }
+
+        return stringValue
+        
+    }
+}
+
+extension CFBoolean: StringConvertible {
+    public var asString: String? { self == kCFBooleanTrue ? "true" : "false" }
+}

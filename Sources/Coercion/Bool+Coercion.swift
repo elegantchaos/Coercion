@@ -25,3 +25,11 @@ extension Bool: BoolConvertible {
     public var asBool: Bool? { return self }
 }
 
+extension NSNumber: BoolConvertible {
+    public var asBool: Bool? { self.boolValue }
+}
+
+extension CFBoolean: BoolConvertible {
+    public var asBool: Bool? { self == kCFBooleanTrue }
+}
+
