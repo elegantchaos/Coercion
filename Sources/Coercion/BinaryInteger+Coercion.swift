@@ -27,16 +27,20 @@ extension UInt16: StandardConvertible { }
 extension UInt32: StandardConvertible { }
 extension UInt64: StandardConvertible { }
 
-extension CFBoolean: IntConvertible {
-    public var asInt: Int? { self == kCFBooleanTrue ? 1 : 0 }
-}
 extension NSNumber: IntConvertible {
     public var asInt: Int? { Int(int64Value) }
+}
+
+extension NSNumber: UIntConvertible {
+    public var asUInt: UInt? { UInt(int64Value) }
+}
+
+#if !os(Linux)
+extension CFBoolean: IntConvertible {
+    public var asInt: Int? { self == kCFBooleanTrue ? 1 : 0 }
 }
 
 extension CFBoolean: UIntConvertible {
     public var asUInt: UInt? { self == kCFBooleanTrue ? 1 : 0 }
 }
-extension NSNumber: UIntConvertible {
-    public var asUInt: UInt? { UInt(int64Value) }
-}
+#endif

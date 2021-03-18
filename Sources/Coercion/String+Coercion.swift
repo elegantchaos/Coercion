@@ -42,6 +42,8 @@ extension NSNumber: StringConvertible {
     }
 }
 
+#if !os(Linux)
 extension CFBoolean: StringConvertible {
     public var asString: String? { self == kCFBooleanTrue ? "true" : "false" }
 }
+#endif

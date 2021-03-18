@@ -29,7 +29,8 @@ extension NSNumber: BoolConvertible {
     public var asBool: Bool? { self.boolValue }
 }
 
+#if !os(Linux)
 extension CFBoolean: BoolConvertible {
     public var asBool: Bool? { self == kCFBooleanTrue }
 }
-
+#endif

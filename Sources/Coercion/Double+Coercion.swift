@@ -31,6 +31,8 @@ extension NSNumber: DoubleConvertible {
     public var asDouble: Double? { doubleValue }
 }
 
+#if !os(Linux)
 extension CFBoolean: DoubleConvertible {
     public var asDouble: Double? { self == kCFBooleanTrue ? 1.0 : 0.0 }
 }
+#endif
