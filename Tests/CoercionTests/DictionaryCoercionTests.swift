@@ -13,9 +13,12 @@ func subscriptConverter<CustomDict>(for type: CustomDict) -> Converter {
     return FakeConverter()
 }
 
+#if os(Linux)
+let kCFBooleanTrue: Bool? = true
+#endif
 
 final class DictionaryCoercionTests: XCTestCase {
-    let example: [String:Any] = [
+    var example: [String:Any] = [
         "string": "123",
         "nsstring": "123" as NSString,
         "int": 123,
