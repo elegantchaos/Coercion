@@ -12,14 +12,17 @@ final class CoercionTests: XCTestCase {
         XCTAssertEqual(123.456.asInt, 123)
         XCTAssertEqual(NSNumber(123).asInt, 123)
         XCTAssertEqual(NSNumber(123.456).asInt, 123)
-        XCTAssertEqual(kCFBooleanTrue!.asInt, 1)
-        XCTAssertEqual(kCFBooleanFalse!.asInt, 0)
         XCTAssertEqual(NSNumber(true).asInt, 1)
         XCTAssertEqual(NSNumber(false).asInt, 0)
 
         XCTAssertNil("not a number".asInt)
         XCTAssertNil(" 123 ".asInt)
         XCTAssertNil("(123) ".asInt)
+        
+        #if !os(Linux)
+        XCTAssertEqual(kCFBooleanTrue!.asInt, 1)
+        XCTAssertEqual(kCFBooleanFalse!.asInt, 0)
+        #endif
     }
 
     func testUIntCoercion() {
@@ -30,8 +33,6 @@ final class CoercionTests: XCTestCase {
         XCTAssertEqual(123.456.asUInt, 123)
         XCTAssertEqual(NSNumber(123).asUInt, 123)
         XCTAssertEqual(NSNumber(123.456).asUInt, 123)
-        XCTAssertEqual(kCFBooleanTrue!.asUInt, 1)
-        XCTAssertEqual(kCFBooleanFalse!.asUInt, 0)
         XCTAssertEqual(NSNumber(true).asUInt, 1)
         XCTAssertEqual(NSNumber(false).asUInt, 0)
 
@@ -39,6 +40,11 @@ final class CoercionTests: XCTestCase {
         XCTAssertNil(" 123 ".asUInt)
         XCTAssertNil("(123) ".asUInt)
         XCTAssertNil("-456".asUInt)
+
+        #if !os(Linux)
+        XCTAssertEqual(kCFBooleanTrue!.asUInt, 1)
+        XCTAssertEqual(kCFBooleanFalse!.asUInt, 0)
+        #endif
     }
     
     func testDoubleCoercion() {
@@ -50,14 +56,17 @@ final class CoercionTests: XCTestCase {
         XCTAssertEqual(123.456.asDouble, 123.456)
         XCTAssertEqual(NSNumber(123).asDouble, 123.0)
         XCTAssertEqual(NSNumber(123.456).asDouble, 123.456)
-        XCTAssertEqual(kCFBooleanTrue!.asDouble, 1.0)
-        XCTAssertEqual(kCFBooleanFalse!.asDouble, 0.0)
         XCTAssertEqual(NSNumber(true).asDouble, 1.0)
         XCTAssertEqual(NSNumber(false).asDouble, 0.0)
 
         XCTAssertNil("not a number".asDouble)
         XCTAssertNil(" 123 ".asDouble)
         XCTAssertNil("(123) ".asDouble)
+
+        #if !os(Linux)
+        XCTAssertEqual(kCFBooleanTrue!.asDouble, 1.0)
+        XCTAssertEqual(kCFBooleanFalse!.asDouble, 0.0)
+        #endif
     }
 
     func testBoolCoercion() {
@@ -77,10 +86,13 @@ final class CoercionTests: XCTestCase {
         XCTAssertEqual(0.asBool, false)
         XCTAssertEqual(NSNumber(123).asBool, true)
         XCTAssertEqual(NSNumber(123.456).asBool, true)
-        XCTAssertEqual(kCFBooleanTrue!.asBool, true)
-        XCTAssertEqual(kCFBooleanFalse!.asBool, false)
         XCTAssertEqual(NSNumber(true).asBool, true)
         XCTAssertEqual(NSNumber(false).asBool, false)
+
+        #if !os(Linux)
+        XCTAssertEqual(kCFBooleanTrue!.asBool, true)
+        XCTAssertEqual(kCFBooleanFalse!.asBool, false)
+        #endif
     }
 
     func testStringCoercion() {
@@ -91,10 +103,13 @@ final class CoercionTests: XCTestCase {
         XCTAssertEqual(false.asString, "false")
         XCTAssertEqual(NSNumber(123).asString, "123")
         XCTAssertEqual(NSNumber(123.456).asString, "123.456")
-        XCTAssertEqual(kCFBooleanTrue!.asString, "true")
-        XCTAssertEqual(kCFBooleanFalse!.asString, "false")
         XCTAssertEqual(NSNumber(true).asString, "true")
         XCTAssertEqual(NSNumber(false).asString, "false")
+        
+        #if !os(Linux)
+        XCTAssertEqual(kCFBooleanTrue!.asString, "true")
+        XCTAssertEqual(kCFBooleanFalse!.asString, "false")
+        #endif
     }
     
     func testDateCoercion() {
