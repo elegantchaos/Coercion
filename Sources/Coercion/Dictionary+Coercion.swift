@@ -22,4 +22,8 @@ public extension Dictionary {
         return converter.asDate(self[key])
     }
 
+    subscript(asBool key: Key, converter: Converter = StandardConverter.shared) -> Bool? {
+        return converter.asBool(self[key])
+    }
+
 }

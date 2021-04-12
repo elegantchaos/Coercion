@@ -18,6 +18,7 @@ public protocol Converter {
     func asDouble<T>(_ value: T?) -> Double? where T: DoubleConvertible
     func asDouble(_ value: Any?) -> Double?
     func asDate(_ value: Any?) -> Date?
+    func asBool(_ value: Any?) -> Bool
 }
 
 public protocol DateFormatter {
@@ -76,6 +77,16 @@ public struct StandardConverter: Converter {
             return value.asDate
         } else {
             return nil
+        }
+    }
+    
+    public func asBool(_ value: Any?) -> Bool {
+        if let value = value as? BoolConvertible {
+            return value.asBool ?? false
+        } else if let value = value as? IntConvertible {
+            return (value.asInt ?? 0) != 0
+        } else {
+            return false
         }
     }
 }
