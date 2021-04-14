@@ -16,6 +16,10 @@ struct FakeConverter: Converter {
         return value == nil ? nil : "fake"
     }
     
+    func asBool(_ value: Any?) -> Bool {
+        return value == nil ? false : true
+    }
+    
     func asInt<T>(_ value: T?) -> Int? where T : IntConvertible {
         return value == nil ? nil : 999
     }
@@ -79,4 +83,11 @@ final class ConverterProtocolTests: XCTestCase {
         XCTAssertNil(converter.asDouble(nil))
     }
 
+    func testBool() {
+        XCTAssertTrue(converter.asBool("123"))
+        XCTAssertTrue(converter.asBool(123))
+        XCTAssertTrue(converter.asBool(123.456))
+        XCTAssertTrue(converter.asBool(true))
+        XCTAssertFalse(converter.asBool(nil))
+    }
 }
