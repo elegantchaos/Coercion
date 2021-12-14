@@ -9,3 +9,6 @@ extension Date: DateConvertible {
     public var asDate: Date? { self }
 }
 
+extension NSDate: DateConvertible {
+    public var asDate: Date? { self as Date }
+}
