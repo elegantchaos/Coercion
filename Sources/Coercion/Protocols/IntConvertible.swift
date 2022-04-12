@@ -3,12 +3,16 @@
 //  All code (c) 2020 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-public protocol IntConvertible {
+public protocol IntConvertible: Convertible {
     var asInt: Int? { get }
 }
 
-extension Optional where Wrapped: IntConvertible {
+public extension Optional where Wrapped: IntConvertible {
     var asInt: Int? {
         return self?.asInt
     }
+}
+
+public extension IntConvertible {
+    func `as`<T: IntConvertible>(_ type: T.Type) -> Int? { asInt }
 }

@@ -5,13 +5,16 @@
 
 import Foundation
 
-public protocol BoolConvertible {
+public protocol BoolConvertible: Convertible {
     var asBool: Bool? { get }
 }
 
-extension Optional where Wrapped: BoolConvertible {
+public extension Optional where Wrapped: BoolConvertible {
     var asBool: Bool? {
         return self?.asBool
     }
 }
 
+public extension BoolConvertible {
+    func `as`<T: BoolConvertible>(_ type: T.Type) -> Bool? { asBool }
+}

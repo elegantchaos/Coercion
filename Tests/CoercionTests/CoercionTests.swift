@@ -46,7 +46,8 @@ final class CoercionTests: XCTestCase {
         XCTAssertEqual(kCFBooleanFalse!.asUInt, 0)
         #endif
     }
-    
+
+
     func testDoubleCoercion() {
         XCTAssertEqual("123.456".asDouble, 123.456)
         XCTAssertEqual("-456.123".asDouble, -456.123)
@@ -68,7 +69,7 @@ final class CoercionTests: XCTestCase {
         XCTAssertEqual(kCFBooleanFalse!.asDouble, 0.0)
         #endif
     }
-
+    
     func testBoolCoercion() {
         XCTAssertEqual("123.456".asBool, true)
         XCTAssertEqual("0".asBool, false)
@@ -111,7 +112,7 @@ final class CoercionTests: XCTestCase {
         XCTAssertEqual(kCFBooleanFalse!.asString, "false")
         #endif
     }
-    
+
     func testDateCoercion() {
         let standardFormatter = StandardConverter.shared.dateFormatter
         let longFormatter = DateFormatter()

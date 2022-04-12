@@ -3,24 +3,28 @@
 //  All code (c) 2020 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-public protocol StringConvertible {
+public protocol StringConvertible: Convertible {
     var asString: String? { get }
 }
 
-extension Optional where Wrapped: StringConvertible {
-    public var asString: String? {
+public extension Optional where Wrapped: StringConvertible {
+    var asString: String? {
         return self?.asString
     }
 }
 
-extension Optional where Wrapped: CustomStringConvertible {
-    public var asString: String? {
+public extension Optional where Wrapped: CustomStringConvertible {
+    var asString: String? {
         return self == nil ? nil : self?.description
     }
 }
 
-extension CustomStringConvertible {
-    public var asString: String? {
+public extension CustomStringConvertible {
+    var asString: String? {
         return self.description
     }
+}
+
+public extension StringConvertible {
+    func `as`<T: StringConvertible>(_ type: T.Type) -> String? { asString }
 }

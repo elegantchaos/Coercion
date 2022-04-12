@@ -5,23 +5,32 @@
 
 import Foundation
 
-public protocol DateConvertible {
+public protocol DateConvertible: Convertible {
     var asDate: Date? { get }
+}
+
+public extension Optional where Wrapped: DateConvertible {
+    var asDate: Date? {
+        return self?.asDate
+    }
+}
+
+public extension DateConvertible {
+    func `as`<T: DateConvertible>(_ type: T.Type) -> Date? {
+        asDate
+    }
 }
 
 public protocol DateStringConvertible: DateConvertible {
     func asDate(using: DateFormatter) -> Date?
 }
 
-extension DateStringConvertible {
-    public var asDate: Date? { asDate(using: StandardConverter.shared.dateFormatter) }
+public extension DateStringConvertible {
+    var asDate: Date? { asDate(using: StandardConverter.shared.dateFormatter) }
+    func `as`<T: DateConvertible>(_ type: T.Type) -> Date? { asDate }
+    func `as`<T: DateConvertible>(_ type: T.Type, using formatter: DateFormatter) -> Date? { self.asDate(using: formatter) }
 }
 
-extension Optional where Wrapped: DateConvertible {
-    var asDate: Date? {
-        return self?.asDate
-    }
-}
 
 extension ISO8601DateFormatter: DateFormatter {
 }

@@ -3,12 +3,17 @@
 //  All code (c) 2020 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-public protocol UIntConvertible {
+public protocol UIntConvertible: Convertible {
     var asUInt: UInt? { get }
 }
 
-extension Optional where Wrapped: UIntConvertible {
+public extension Optional where Wrapped: UIntConvertible {
     var asUInt: UInt? {
         return self?.asUInt
     }
 }
+
+public extension UIntConvertible {
+    func `as`<T: UIntConvertible>(_ type: T.Type) -> UInt? { asUInt }
+}
+

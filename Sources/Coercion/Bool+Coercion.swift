@@ -5,23 +5,11 @@
 
 import Foundation
 
-extension Bool: IntConvertible {
+extension Bool: StandardConvertible {
     public var asInt: Int? { return self ? 1 : 0 }
-}
-
-extension Bool: UIntConvertible {
     public var asUInt: UInt? { return self ? 1 : 0 }
-}
-
-extension Bool: DoubleConvertible {
     public var asDouble: Double? { return self ? 1.0 : 0.0 }
-}
-
-extension Bool: StringConvertible {
     public var asString: String? { return self ? "true" : "false" }
-}
-
-extension Bool: BoolConvertible {
     public var asBool: Bool? { return self }
 }
 
@@ -30,7 +18,7 @@ extension NSNumber: BoolConvertible {
 }
 
 #if !os(Linux)
-extension CFBoolean: BoolConvertible {
+extension CFBoolean: StandardConvertible {
     public var asBool: Bool? { self == kCFBooleanTrue }
 }
 #endif

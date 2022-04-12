@@ -5,30 +5,23 @@
 
 import Foundation
 
-extension Double: IntConvertible {
+extension BinaryFloatingPoint {
     public var asInt: Int? { Int(self) }
-}
-
-extension Double: UIntConvertible {
     public var asUInt: UInt? { UInt(self) }
-}
-
-extension Double: DoubleConvertible {
-    public var asDouble: Double? { self }
-}
-
-extension Double: BoolConvertible {
+    public var asDouble: Double? { Double(self) }
     public var asBool: Bool? { self == 0.0 ? false : true }
+    public var asDate: Date? { Date(timeIntervalSinceReferenceDate: Double(self)) }
 }
 
-extension Double: StringConvertible { }
-
-extension Double: DateConvertible {
-    public var asDate: Date? { Date(timeIntervalSinceReferenceDate: self) }
-}
+extension Double: StandardConvertible { }
+extension Float: StandardConvertible { }
 
 extension NSNumber: DoubleConvertible {
     public var asDouble: Double? { doubleValue }
+}
+
+extension NSNumber: StandardConvertible {
+    
 }
 
 #if !os(Linux)
