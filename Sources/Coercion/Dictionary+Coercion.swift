@@ -14,6 +14,10 @@ public extension Dictionary {
         return converter.asInt(self[key])
     }
 
+    subscript(asUInt key: Key, converter: Converter = StandardConverter.shared) -> UInt? {
+        return converter.asUInt(self[key])
+    }
+
     subscript(asDouble key: Key, converter: Converter = StandardConverter.shared) -> Double? {
         return converter.asDouble(self[key])
     }
